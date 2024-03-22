@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import fetchFilmReviews from "../../services/fetchFilmReviews";
 import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
+import Empty from "../Empty/Empty";
 
 const MovieReviews = () => {
   const { movieId } = useParams();
@@ -11,6 +12,7 @@ const MovieReviews = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorName, setErrorName] = useState("");
+  const [isEmpty, setIsEmpty] = useState(false);
 
   useEffect(() => {
     const getFilmReviews = async () => {
@@ -18,6 +20,10 @@ const MovieReviews = () => {
         setIsLoading(true);
         setIsError(false);
         const data = await fetchFilmReviews(movieId);
+        if (data.results.length === 0) {
+          setIsEmpty(true);
+          return;
+        }
         console.log(data.results);
         setReviews(data.results);
       } catch (error) {
@@ -34,6 +40,7 @@ const MovieReviews = () => {
       <h3>Review:</h3>
       {isLoading && <Loader />}
       {isError && <Error errorName={errorName} />}
+      {isEmpty && <Empty />}
       {reviews !== null && (
         <ul>
           {reviews.map((item) => (

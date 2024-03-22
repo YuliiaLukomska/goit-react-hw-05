@@ -32,10 +32,10 @@ img {
   max-width: 100%;
   height: auto;
 }
-input {
+/* input {
   outline: none;
   border: none;
-}
+} */
 button {
   cursor: pointer;
   outline: none;
