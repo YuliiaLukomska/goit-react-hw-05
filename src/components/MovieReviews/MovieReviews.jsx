@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import fetchFilmCast from "../../services/fetchFilmCast";
+import fetchFilmReviews from "../../services/fetchFilmReviews";
 import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
 
-export const MovieCast = () => {
+const MovieReviews = () => {
   const { movieId } = useParams();
 
-  const [cast, setCast] = useState(null);
+  const [reviews, setReviews] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorName, setErrorName] = useState("");
 
   useEffect(() => {
-    const getFilmCast = async () => {
+    const getFilmReviews = async () => {
       try {
         setIsLoading(true);
         setIsError(false);
-        const data = await fetchFilmCast(movieId);
-        console.log(data.cast);
-        setCast(data.cast);
+        const data = await fetchFilmReviews(movieId);
+        console.log(data.results);
+        setReviews(data.results);
       } catch (error) {
         setIsError(true);
         setErrorName(error.message);
@@ -27,19 +27,19 @@ export const MovieCast = () => {
         setIsLoading(false);
       }
     };
-    getFilmCast();
+    getFilmReviews();
   }, [movieId]);
-
   return (
     <>
-      <h2>Actors:</h2>
+      <h3>Review:</h3>
       {isLoading && <Loader />}
       {isError && <Error errorName={errorName} />}
-      {cast !== null && (
+      {reviews !== null && (
         <ul>
-          {cast.map((item) => (
+          {reviews.map((item) => (
             <li key={item.id}>
-              <p>{item.name}</p>
+              <p>{item.author}</p>
+              <p>{item.content}</p>
             </li>
           ))}
         </ul>
@@ -47,3 +47,5 @@ export const MovieCast = () => {
     </>
   );
 };
+
+export default MovieReviews;

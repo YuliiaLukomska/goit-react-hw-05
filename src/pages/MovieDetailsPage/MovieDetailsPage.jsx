@@ -4,11 +4,12 @@ import fetchFilmById from "../../services/fetchFilmById";
 import Error from "../../components/Error/Error";
 import Loader from "../../components/Loader/Loader";
 import { MovieCast } from "../../components/MovieCast/MovieCast";
+import MovieReviews from "../../components/MovieReviews/MovieReviews";
 
 const MovieDetailsPage = () => {
   // хук зчитує значення динамічного параметра з адресної строки і записує його в змінну movieId.
   const { movieId } = useParams();
-  console.log(movieId);
+
   const [film, setFilm] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -39,9 +40,14 @@ const MovieDetailsPage = () => {
       {film !== null && (
         <div>
           <h1>{film.title}</h1>
+          <p>Add film description</p>
           <Link to="cast">Cast</Link>
           <Routes>
             <Route path="cast" element={<MovieCast />} />
+          </Routes>
+          <Link to="reviews">Reviews</Link>
+          <Routes>
+            <Route path="reviews" element={<MovieReviews />} />
           </Routes>
         </div>
       )}
