@@ -16,7 +16,7 @@ const HomePage = () => {
         setIsLoading(true);
         setIsError(false);
         const data = await fetchFilms();
-        console.log(data);
+
         setFilms(data.results);
       } catch (error) {
         setIsError(true);
@@ -33,7 +33,7 @@ const HomePage = () => {
       <h1>Trending today</h1>
       {isLoading && <Loader />}
       {isError && <Error errorName={errorName} />}
-      <MovieList films={films} />
+      {films !== null && <MovieList films={films} />}
     </>
   );
 };

@@ -18,7 +18,7 @@ export const MovieCast = () => {
         setIsLoading(true);
         setIsError(false);
         const data = await fetchFilmCast(movieId);
-        console.log(data.cast);
+
         setCast(data.cast);
       } catch (error) {
         setIsError(true);

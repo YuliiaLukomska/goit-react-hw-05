@@ -24,7 +24,7 @@ const MovieReviews = () => {
           setIsEmpty(true);
           return;
         }
-        console.log(data.results);
+
         setReviews(data.results);
       } catch (error) {
         setIsError(true);

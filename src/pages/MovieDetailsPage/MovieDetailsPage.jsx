@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import fetchFilmById from "../../services/fetchFilmById";
 import Error from "../../components/Error/Error";
 import Loader from "../../components/Loader/Loader";
@@ -14,6 +14,8 @@ const MovieDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorName, setErrorName] = useState("");
+  const location = useLocation();
+  const backLinkRef = useRef(location.state ?? "/movies");
 
   useEffect(() => {
     const getFilmById = async () => {
@@ -21,7 +23,7 @@ const MovieDetailsPage = () => {
         setIsLoading(true);
         setIsError(false);
         const data = await fetchFilmById(movieId);
-        console.log(data);
+
         setFilm(data);
       } catch (error) {
         setIsError(true);
@@ -39,6 +41,7 @@ const MovieDetailsPage = () => {
       {isError && <Error errorName={errorName} />}
       {film !== null && (
         <div>
+          <Link to={backLinkRef.current}>Go Back</Link>
           <h1>{film.title}</h1>
           <p>Add film description</p>
           <Link to="cast">Cast</Link>
