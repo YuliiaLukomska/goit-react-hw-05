@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import fetchFilmById from "../../services/fetchFilmById";
 import Error from "../../components/Error/Error";
 import Loader from "../../components/Loader/Loader";
-import { MovieCast } from "../../components/MovieCast/MovieCast";
-import MovieReviews from "../../components/MovieReviews/MovieReviews";
+
+const MovieCast = lazy(() => import("../../components/MovieCast/MovieCast"));
+const MovieReviews = lazy(() =>
+  import("../../components/MovieReviews/MovieReviews")
+);
 
 const MovieDetailsPage = () => {
   // хук зчитує значення динамічного параметра з адресної строки і записує його в змінну movieId.
@@ -45,13 +48,13 @@ const MovieDetailsPage = () => {
           <h1>{film.title}</h1>
           <p>Add film description</p>
           <Link to="cast">Cast</Link>
-          <Routes>
-            <Route path="cast" element={<MovieCast />} />
-          </Routes>
           <Link to="reviews">Reviews</Link>
-          <Routes>
-            <Route path="reviews" element={<MovieReviews />} />
-          </Routes>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="cast" element={<MovieCast />} />
+              <Route path="reviews" element={<MovieReviews />} />
+            </Routes>
+          </Suspense>
         </div>
       )}
     </>

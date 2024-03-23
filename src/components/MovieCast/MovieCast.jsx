@@ -4,7 +4,7 @@ import fetchFilmCast from "../../services/fetchFilmCast";
 import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
 
-export const MovieCast = () => {
+const MovieCast = () => {
   const { movieId } = useParams();
 
   const [cast, setCast] = useState(null);
@@ -47,3 +47,5 @@ export const MovieCast = () => {
     </>
   );
 };
+
+export default MovieCast;

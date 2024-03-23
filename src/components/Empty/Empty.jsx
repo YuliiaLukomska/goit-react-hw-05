@@ -1,5 +1,5 @@
 const Empty = () => {
-  return <p>There are no reviews.</p>;
+  return <p>There are no results.</p>;
 };
 
 export default Empty;
