@@ -16,7 +16,6 @@ const HomePage = () => {
         setIsLoading(true);
         setIsError(false);
         const data = await fetchFilms();
-
         setFilms(data.results);
       } catch (error) {
         setIsError(true);

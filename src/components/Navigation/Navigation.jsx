@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 
 export const Navigation = () => {
   const activeLinkClass = ({ isActive }) => {
-    return clsx({ [css.active]: isActive });
+    return clsx(css.navigationItem, { [css.active]: isActive });
   };
   return (
-    <nav>
+    <nav className={css.navigationWrapper}>
       <NavLink to="/" className={activeLinkClass}>
         Home
       </NavLink>

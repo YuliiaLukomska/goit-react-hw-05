@@ -7,10 +7,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-a {
+/* a {
   text-decoration: none;
   outline: none;
-}
+} */
 
 ul {
   list-style-type: none;
@@ -38,8 +38,8 @@ img {
 } */
 button {
   cursor: pointer;
-  outline: none;
-  border: none;
+  /* outline: none;
+  border: none; */
 }
 .loader {
   margin-left: 650px;

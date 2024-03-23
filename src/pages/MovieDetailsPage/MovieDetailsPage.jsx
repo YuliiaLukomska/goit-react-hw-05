@@ -26,7 +26,7 @@ const MovieDetailsPage = () => {
         setIsLoading(true);
         setIsError(false);
         const data = await fetchFilmById(movieId);
-
+        console.log(data);
         setFilm(data);
       } catch (error) {
         setIsError(true);
@@ -46,7 +46,20 @@ const MovieDetailsPage = () => {
         <div>
           <Link to={backLinkRef.current}>Go Back</Link>
           <h1>{film.title}</h1>
-          <p>Add film description</p>
+          <div>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
+              alt=""
+            />
+            <div>
+              <p>{film.original_title}</p>
+              <p>Overview</p>
+              <p>{film.overview}</p>
+              <p>Popularity: {film.popularity}</p>
+              <p>Release date: {film.release_date}</p>
+            </div>
+          </div>
+
           <Link to="cast">Cast</Link>
           <Link to="reviews">Reviews</Link>
           <Suspense fallback={<Loader />}>

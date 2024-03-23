@@ -8,7 +8,7 @@ import Error from "../../components/Error/Error";
 import Empty from "../../components/Empty/Empty";
 
 const MoviesPage = () => {
-  const [films, setFilms] = useState(null);
+  const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorName, setErrorName] = useState("");
@@ -19,8 +19,12 @@ const MoviesPage = () => {
   const searchQuery = searchParams.get("query");
 
   useEffect(() => {
+    if (searchQuery === null) {
+      return;
+    }
     const getFilmsByQuery = async () => {
       try {
+        setIsEmpty(false);
         setIsLoading(true);
         setIsError(false);
         const data = await fetchFilmsByQuery(searchQuery);
@@ -41,7 +45,7 @@ const MoviesPage = () => {
 
   const onSetQueryValue = (queryValue) => {
     setSearchParams({ query: queryValue });
-    setIsEmpty(false);
+    setFilms([]);
   };
 
   return (
@@ -49,7 +53,7 @@ const MoviesPage = () => {
       <SearchBar onSubmit={onSetQueryValue} />
       {isLoading && <Loader />}
       {isError && <Error errorName={errorName} />}
-      {films !== null && <MovieList films={films} />}
+      {films.length > 0 && <MovieList films={films} />}
       {isEmpty && <Empty />}
     </div>
   );

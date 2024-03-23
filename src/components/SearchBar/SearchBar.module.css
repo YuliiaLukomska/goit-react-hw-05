@@ -1,0 +1,12 @@
+.input {
+  margin-right: 10px;
+  padding: 8px;
+  border: black solid 1px;
+}
+
+.formBtn {
+  padding: 8px;
+  border-radius: 14px;
+  background-color: black;
+  color: white;
+}
