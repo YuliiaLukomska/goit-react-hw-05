@@ -7,10 +7,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* a {
+a {
   text-decoration: none;
   outline: none;
-} */
+}
 
 ul {
   list-style-type: none;
@@ -32,10 +32,10 @@ img {
   max-width: 100%;
   height: auto;
 }
-/* input {
+input {
   outline: none;
   border: none;
-} */
+}
 button {
   cursor: pointer;
   /* outline: none;

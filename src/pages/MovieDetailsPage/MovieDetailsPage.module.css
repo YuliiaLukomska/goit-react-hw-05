@@ -1,0 +1,30 @@
+.filmWrapper {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+.filmTitle {
+  font-size: 25px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.filmRating {
+  display: flex;
+  flex-direction: column;
+}
+.filmOverview {
+  margin-bottom: 30px;
+}
+.filmDescriptionWrapper {
+  max-width: 500px;
+}
+.filmMainTitle {
+  margin-bottom: 15px;
+}
+.filmAdditionalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: grey solid 1px;
+}
